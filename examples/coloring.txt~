@@ -1,0 +1,49 @@
+((bigand p (France Italy Switzerland Germany Luxembourg Belgium Austria) (bigor c (Red Blue Green Yellow) (p c)))
+
+and
+
+(bigand p (France Italy Switzerland Germany Luxembourg Belgium Austria) (bigand c (Red Blue Green Yellow) (bigand d (Red Blue Green Yellow) (d diff c) ((p c) imply (not (p d))))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (France c)) or (not (Germany c))))
+
+and 
+
+(bigand c (Red Blue Green Yellow) ((not (Switzerland c)) or (not (Germany c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (France c)) or (not (Switzerland c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (Luxembourg c)) or (not (Germany c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (France c)) or (not (Luxembourg c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (France c)) or (not (Italy c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (Switzerland c)) or (not (Italy c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (Italy c)) or (not (Austria c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (Luxembourg c)) or (not (Belgium c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (Belgium c)) or (not (France c))))
+
+and
+
+(bigand c (Red Blue Green Yellow) ((not (Belgium c)) or (not (Germany c)))))

@@ -1,0 +1,20 @@
+(
+(bigand i (1 .. 4) (bigand j (1 .. 4) (bigor n (1 .. 4) (p i j n))))
+and
+(bigand i (1 .. 4) (bigand j (1 .. 4) (bigand n (1 .. 4)  (bigand m (1 .. 4)  (m diff n) ((p i j n) imply (not (p i j m)))))))
+and
+(bigand n (1 .. 4) (bigand i (1 .. 4) (bigor j (1 .. 4) (p i j n))))
+and
+(bigand n (1 .. 4) (bigand j (1 .. 4) (bigor i (1 .. 4) (p i j n))))
+and
+(bigand n (1 .. 4) (bigor i (1 2) (bigor j (1 2) (p i j n))))
+and
+(bigand n (1 .. 4) (bigor i (1 2) (bigor j (3 4) (p i j n))))
+and
+(bigand n (1 .. 4) (bigor i (3 4) (bigor j (1 2) (p i j n))))
+and
+(bigand n (1 .. 4) (bigor i (3 4) (bigor j (3 4) (p i j n))))
+
+
+
+

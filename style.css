@@ -1,0 +1,333 @@
+.graph {border-width:1px; border-style:dotted;}
+
+
+.mainexplanation {font-size:80%;}
+
+h1 {font-size:150%}
+#divinput {margin:8px}
+#divoutput {}
+
+
+h3 {background-color: CCCCEE;}
+
+.checksatbutton {background-color: 0000FF; color: FFFFFF; border-width:0px; padding: 5px}
+
+.flushright {float: right}
+
+a {color:blue;
+   text-decoration: underline;
+   font-size:80%;
+   cursor: pointer}
+
+body {
+ margin: 0px 0px 0px 0px; 
+}
+
+.clausestable {border-width:2px; border-style:solid; background-color:CCFFCC}
+
+
+.palette {
+  padding: 32px;
+  
+}
+
+.topscreen
+{
+    background-color: EEEEEE;
+}
+
+.inputFormuladiv
+{
+    border-width:1px; border-style:solid;
+    width: 800px;
+}
+
+.examplesbox
+{
+    background-color: FFFFEE;
+    font-size:80%;
+    float: left;
+    margin: 4px;
+    padding: 4px;
+    border-width:2px; border-style:solid; border-color: FFAA55;
+}
+
+.forgeeks
+{
+    background-color: FFEEEE;
+    font-size:80%;
+    float: right;
+    margin: 4px;
+    padding: 4px;
+    border-width:2px; border-style:solid; border-color: AA3333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Demo styles
+ * Not needed for tooltips to work
+ */
+
+/* `border-box`... ALL THE THINGS! */
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 32px auto;
+  text-align: center;
+  font-size: 100%;
+  max-width: 1200px;
+  width: 98%;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+header,
+.demo,
+.demo p {
+  margin: 4em 0;
+  text-align: center;
+}
+
+/**
+ * Tooltip Styles
+ */
+
+/* Add this attribute to the element that needs a tooltip */
+[data-tooltip] {
+  position: relative;
+  z-index: 2;
+  cursor: pointer;
+}
+
+/* Hide the tooltip content by default */
+[data-tooltip]:before,
+[data-tooltip]:after {
+  visibility: hidden;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=0);
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Position tooltip above the element */
+[data-tooltip]:before {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-bottom: 5px;
+  margin-left: -80px;
+  padding: 7px;
+  width: 160px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  background-color: #000;
+  background-color: hsla(0, 0%, 20%, 0.9);
+  color: #fff;
+  content: attr(data-tooltip);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+/* Triangle hack to make tooltip look like a speech bubble */
+[data-tooltip]:after {
+  position: absolute;
+  bottom: 150%;
+  left: 50%;
+  margin-left: -5px;
+  width: 0;
+  border-top: 5px solid #000;
+  border-top: 5px solid hsla(0, 0%, 20%, 0.9);
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  content: " ";
+  font-size: 0;
+  line-height: 0;
+}
+
+/* Show tooltip content on hover */
+[data-tooltip]:hover:before,
+[data-tooltip]:hover:after {
+  visibility: visible;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: progid: DXImageTransform.Microsoft.Alpha(Opacity=100);
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#menucontainer {
+min-height: 64px;
+}
+
+
+.horizontalmenu, .horizontalmenu ul{
+padding:0;
+margin:0;
+list-style:none;
+text-align:center;
+}
+.horizontalmenu li{
+display:inline-block;
+position:relative;
+border-radius:8px 8px 0 0;
+}
+.horizontalmenu ul li{
+display:inherit;
+border-radius:0;
+}
+.horizontalmenu ul li:hover{
+border-radius:0;
+}
+.horizontalmenu ul li:last-child{
+border-radius:0 0 8px 8px;
+}
+.horizontalmenu ul{
+position:absolute;
+z-index: 1000;
+max-height:0;
+left: 0;
+right: 0;
+overflow:hidden;
+-moz-transition: .1s all .03s;
+-webkit-transition: .1s all .03s;
+transition: .1s all .03s;
+}
+.horizontalmenu li:hover ul{
+max-height:30em;
+}
+/* background des liens menus */
+
+.horizontalmenu li{
+background-color: #729EBF;
+background-image: -webkit-linear-gradient(top, #729EBF 0%, #333A40 100%);
+background-image:linear-gradient(to bottom, #729EBF 0%, #333A40 100%);
+}
+/* background des liens sous menus */
+
+.horizontalmenu li li{
+background:#333A40;
+}
+
+/* background des liens menus et sous menus au survol */
+
+.horizontalmenu li:hover, .horizontalmenu li li:hover{
+background:#729EBF;
+}
+/* les a href */
+.horizontalmenu a{
+text-decoration:none;
+display:block;
+padding:8px 32px;
+color:#fff;
+font-family:arial;
+}
+.horizontalmenu ul a{
+padding:8px 0;
+}
+.horizontalmenu li:hover li a{
+color:#fff;
+text-transform:inherit;
+}
+.horizontalmenu li:hover a, .horizontalmenu li li:hover a{
+color:#000;
+}
+
+
+
+
+
+.sat {
+   background-color: #88FF88; 
+}
+
+
+
+.unsat {
+   background-color: #DDDDDD; 
+}
+
+
+
+.error {
+   background-color: #DD8888; 
+}
+
+
+
+
+.hide{
+  display:none;  
+}
+
+
+
+
+
+
+.vis-network {
+  overflow-y: scroll;
+  background-color: red;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

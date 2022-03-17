@@ -1,0 +1,160 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script src="jquery-3.0.0.min.js" type="text/javascript"></script>
+<script src="scheme_interpreter.js" type="text/javascript"></script>
+<script src="sat.js" type="text/javascript"></script>
+<script src="satforhuman.js" type="text/javascript"></script>
+<script src="main.js" type="text/javascript"></script>
+<script src="UIDPLLreceive.js" type="text/javascript"></script>
+<script type="text/javascript" src="vis/dist/vis.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css"  />
+
+
+<link rel="stylesheet" href="codemirror-5.4/lib/codemirror.css">
+<script src="codemirror-5.4/lib/codemirror.js"></script>
+<script src="codemirror-5.4/mode/commonlisp/commonlisp.js"></script>
+<script src="codemirror-5.4/addon/edit/matchbrackets.js"></script>
+<script src="he.js"></script>
+
+
+</head>
+<body>
+<div>
+<table>
+<tr class="topscreen">
+<td>
+<h1>DPLL algorithm</h1>
+</td>
+<td class="mainexplanation">
+This tool solves the satisfiability problem for propositional logic, shortly called SAT. It enables to check whether a formula in propositional logic is satisfiable or not. 
+It also provides a pedagogical demonstration of the DPLL (Davis–Putnam–Logemann–Loveland) 
+algorithm for SAT.
+If the input formula is not in conjunctive normal form (CNF),
+then the formula is transformed in an equisatisfiable formula by adding new atomic propositions.
+</td>
+</tr>
+<tr>
+<td></td>
+<td>
+<div id="menucontainer">
+<ul id="menu" class="horizontalmenu">
+<li><a><img src="package.svg" height=32px/>Toy exemples</a>
+<ul>
+<li>
+<a onclick='loadExample("(p or (not p))")'>(p or (not p))</a></li>
+<li><a onclick='loadExample("(p or (not q))")'>(p or (not q))</a></li>
+<li><a onclick='loadExample("(p and (not p))")'>(p and ((not p))</a></li>
+
+<li><a onclick='loadExample("(p and ((not p) or q) and\n ((not p) or (not q)))")'>(p and ((not p)...</a>
+</li>
+
+
+<li><a onclick='loadExample("((p or s) and\n ((not p) or q) and\n ((not p) or (not q)))")'>((p or s) and...</a>
+</li>
+
+
+<li><a onclick='loadExample("((p or q) and (p or (not q)) and\n ((not p) or q) and\n ((not p) or (not q)))")'>((p or q) and ...</a>
+</li>
+
+<li><a onclick='loadExample("( ((not x1) or x2)  and \n ((not x1) or x3 or x5) and \n ((not x2) or x4) and\n ((not x3) or (not x4)) and \n(x1 or x5 or (not x2)) and\n (x2 or x3) and \n (x2 or (not x3)) and\n (x6 or (not x5)) )")'>Example of the book "decision procedures" p. 32</a>
+</li>
+
+<li><a onclick='loadExample("((x1 or x2) and\n ((not x2) or (not x3)) and\n (x3 or (not x12)) and\n ((not x2) or (not x4) or (not x5)) and \n(x3 or x5 or x6 or x7) and\n ((not x7) or x8 or (not x9)) and\n (x6 or (not x7) or x9 or x10) and \n((not x7) or (not 10) or x8 or x11) and\n (x13 or (not x14) or (not x15)) and \n(x8 or (not x7) or x11) and\n ((not x11) or (not x13)) and\n ((not x11) or x14) and\n (x12 or x15))")'>Another big example</a>
+</li>
+
+</ul>
+</li>
+
+
+
+
+<li><a><img src="package.svg" height=32px/>Applications</a>
+<ul>
+
+<li><a onclick='loadExampleFromFile("examples/coloring.txt")'><img src="europe.png" height=32px/> Coloring</a></li>
+
+<li><a onclick='loadExampleFromFile("examples/sudoku.txt")'><img src="sudoku.png" height=32px/>Sudoku</a></li>
+<li><a onclick='loadExampleFromFile("examples/picross.txt")'><img src="Nonogram.jpg" height=32px/>Picross</a></li>
+<li><a onclick='loadExampleFromFile("examples/theorie_groupe_tout_element_ordre_2_implique_groupe_abelien_reduction_a_sat.txt")'>If all elements of a group G are of order 2, then G is abelian.</a></li>
+</ul>
+</li>
+
+
+
+
+
+
+
+<li class="hide">
+<a><img src="tools.png" height=32px/>For GeEks</a>
+
+<ul>
+<li>you can put the list of chosen literals here:
+<input id="inputChosenLiterals" placeholder="e.g: (p (not q) r)"></input></li>
+</ul>
+
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+
+<div id="divinput" >
+<table><tr><td valign="top" class="palette">
+<button class="palettebutton" data-tooltip="not (negation)" onclick="insert('(not <phi>)');">not</button></br>
+<button class="palettebutton" data-tooltip="or (disjunction)" onclick="insert('(<phi> or <psi>)');">or</button></br>
+<button class="palettebutton" data-tooltip="and (conjunction)" onclick="insert('(<phi> and <psi>)');">and</button></br>
+<button class="palettebutton" data-tooltip="imply (implication)" onclick="insert('(<phi> imply <psi>)');">imply</button></br>
+<button class="palettebutton" data-tooltip="equiv (equivalence)" onclick="insert('(<phi> equiv <psi>)');">equiv</button></br></br>
+<button class="palettebutton" data-tooltip="bigand (conjunction over...)" onclick="insert('(bigand i (1 2 3) (p i))');">bigand</button></br>
+<button class="palettebutton" data-tooltip="bigor (disjunction over...)" onclick="insert('(bigor i (1 2 3) (p i))');">bigor</button></br>
+</td><td>
+<div>
+<div class="inputFormuladiv">
+<textarea id="inputFormula" cols="100" rows="4">
+// Un exemple de météo
+// Auteur : François Schwarzentruber
+//
+// Description des propositions atomiques :
+//    pleut : il pleut
+//    tornade : il y a une tornade
+//    beau : il fait beau
+
+((pleut or (not tornade)) and (beau or tornade) and tornade)
+</textarea></div>
+</div></td>
+</tr>
+</table>
+</div>
+<button class="checksatbutton" id="computingstarts" onclick="compute()">
+<img height=48px src="wheel.png"/>Check for satisfiability</button>
+<button hidden class="checksatbutton" id="computingstops" onclick="computationAbort()">
+<img height=48px src="wheel.gif" id="imgcomputing"/>Abort the computation</button>
+</div>
+
+
+
+</br>
+
+
+
+
+
+
+<div id="divoutput">
+<div id="valuation"></div></br></br>
+<div id="execution"></div>
+</div>
+
+
+
+<script>
+      var editor = CodeMirror.fromTextArea(document.getElementById("inputFormula"), 
+            {lineNumbers: true, mode: "text/javascript", matchBrackets: true});
+    </script>
+
+
+</body>
+</html>

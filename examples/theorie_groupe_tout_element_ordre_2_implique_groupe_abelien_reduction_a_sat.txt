@@ -1,0 +1,1 @@
+(bigand x (a b c e) (bigand y (a b c e) (bigand z (a b c e)  (bigand u (a b c e)  (bigand v (a b c e) (bigand w (a b c e)      ((p a b c) and (not (p b a c)) and (p e x x) and (p x x e) and (((p x y u) and (p y z w)) imply ((p x w v) equiv (p u z v))))                ))))))
